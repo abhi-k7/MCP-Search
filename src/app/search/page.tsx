@@ -23,7 +23,7 @@ interface ServerWithLikes {
 export default async function SearchPage({
   searchParams
 }: {
-  searchParams: { query?: string; category?: string; liked?: string };
+  searchParams: Promise<{ query?: string; category?: string; liked?: string }>;
 }) {
   const { query = "", category = "", liked = "" } = await searchParams;
   const isLiked = liked === 'true';
