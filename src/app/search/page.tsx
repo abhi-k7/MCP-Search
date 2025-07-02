@@ -71,7 +71,7 @@ export default async function SearchPage({
                 key={server.id}
                 className="relative bg-card rounded-xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow flex flex-col"
               >
-                <LikeButton serverId={server.id} isLiked={server.likes.length > 0} className="cursor-pointer" />
+                <LikeButton serverId={server.id} isLiked={server.likes.length > 0} />
                 {/* Header Row */}
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-muted/30 border border-border/50 flex items-center justify-center overflow-hidden">
