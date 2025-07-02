@@ -25,12 +25,11 @@ export default async function SearchPage({
 }: {
   searchParams: { query?: string; category?: string; liked?: string };
 }) {
-  const query = searchParams.query || "";
-  const category = searchParams.category || "";
-  const liked = searchParams.liked === 'true';
+  const { query = "", category = "", liked = "" } = await searchParams;
+  const isLiked = liked === 'true';
 
   let servers: ServerWithLikes[];
-  if (liked) {
+  if (isLiked) {
     const result = await getLikedMCPServers({ query, category });
     servers = result.servers as ServerWithLikes[];
   } else {
@@ -41,7 +40,7 @@ export default async function SearchPage({
   const { categories } = await getCategories();
 
   let noResultsMessage = "No servers found.";
-  if (liked) {
+  if (isLiked) {
     noResultsMessage = "You haven't liked any servers yet.";
   } else if (query && category) {
     noResultsMessage = `No servers found for "${query}" in the "${category}" category.`;
