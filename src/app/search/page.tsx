@@ -54,7 +54,7 @@ export default async function SearchPage({
     <div className="min-h-[calc(100vh-4rem)] p-4 sm:p-6 lg:p-8">
       {/* Search Header */}
       <div className="max-w-6xl mx-auto text-center mb-8 pt-8">
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+        <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">
           Search MCP Servers
         </h1>
         <p className="text-lg text-muted-foreground mb-8">
@@ -69,7 +69,7 @@ export default async function SearchPage({
             servers.map((server) => (
               <div
                 key={server.id}
-                className="relative bg-card rounded-xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                className="relative bg-card rounded-xl p-8 border border-white/70 shadow-sm hover:shadow-md transition-shadow flex flex-col"
               >
                 <LikeButton serverId={server.id} isLiked={server.likes.length > 0} />
                 {/* Header Row */}
@@ -96,7 +96,7 @@ export default async function SearchPage({
                   rel="noopener noreferrer"
                   className="mt-auto"
                 >
-                  <Button variant="outline" className="w-full cursor-pointer">
+                  <Button variant="outline" className="w-full cursor-pointer border-white/70">
                     View Details
                   </Button>
                 </Link>

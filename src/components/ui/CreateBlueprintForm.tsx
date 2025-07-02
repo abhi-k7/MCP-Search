@@ -9,6 +9,7 @@ import { createBlueprint } from "@/actions/blueprint.actions";
 import Image from "next/image";
 import { McpServer } from "@prisma/client";
 import { X } from "lucide-react";
+import { useLoadingOverlay } from "@/components/ui/LoadingOverlay";
 
 export default function CreateBlueprintForm({ servers }: { servers: McpServer[] }) {
   const [title, setTitle] = useState("");
@@ -17,6 +18,7 @@ export default function CreateBlueprintForm({ servers }: { servers: McpServer[] 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const { show, hide } = useLoadingOverlay();
 
   const handleToggle = (id: string) => {
     setSelected((prev) =>
@@ -27,6 +29,7 @@ export default function CreateBlueprintForm({ servers }: { servers: McpServer[] 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    show();
     setError(null);
     try {
       await createBlueprint({ title, description, serverIds: selected });
@@ -35,6 +38,7 @@ export default function CreateBlueprintForm({ servers }: { servers: McpServer[] 
       setError(err.message || "Failed to create blueprint");
     } finally {
       setIsSubmitting(false);
+      hide();
     }
   };
 
@@ -101,7 +105,8 @@ export default function CreateBlueprintForm({ servers }: { servers: McpServer[] 
         <Button
           type="submit"
           disabled={!title || selected.length === 0 || isSubmitting}
-          className="w-full py-3 text-lg font-semibold"
+          className={`w-full py-3 text-lg font-semibold transition-colors ${isSubmitting ? 'cursor-wait' : ''}`}
+          variant={isSubmitting ? 'ghost' : 'default'}
         >
           {isSubmitting ? "Creating..." : "Create Blueprint"}
         </Button>

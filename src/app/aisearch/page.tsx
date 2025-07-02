@@ -1,16 +1,20 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useLoadingOverlay } from "@/components/ui/LoadingOverlay";
+import { Sparkles } from "lucide-react";
 
 export default function AiSearchPage() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { show, hide } = useLoadingOverlay();
 
   async function handleSend() {
     if (!input.trim()) return;
-    setLoading(true);
+    setIsSubmitting(true);
+    show();
     setError("");
     setResponse("");
     try {
@@ -25,13 +29,14 @@ export default function AiSearchPage() {
     } catch (e: any) {
       setError(e.message || "Something went wrong");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
+      hide();
     }
   }
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10">
-      <h1 className="text-3xl font-bold mb-6 text-center">AI MCP Server Search</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">AI MCP Server Search</h1>
       <form
         className="w-full flex flex-col gap-4"
         onSubmit={e => {
@@ -44,22 +49,26 @@ export default function AiSearchPage() {
           placeholder="Describe your application..."
           value={input}
           onChange={e => setInput(e.target.value)}
-          disabled={loading}
           required
         />
         <Button
           type="submit"
-          className="bg-black text-white px-6 py-3 rounded text-lg font-semibold disabled:opacity-50 cursor-pointer"
-          disabled={loading || !input.trim()}
+          className={`w-full px-6 py-3 rounded text-lg font-semibold disabled:opacity-50 cursor-pointer transition-colors ${isSubmitting ? 'cursor-wait' : ''}`}
+          variant={isSubmitting ? 'ghost' : 'default'}
+          disabled={!input.trim() || isSubmitting}
         >
-          {loading ? "Searching..." : "Find Relevant MCP Servers"}
+          {isSubmitting ? "Searching..." : "Find Relevant MCP Servers"}
         </Button>
       </form>
       {error && <div className="text-red-600 mt-4">{error}</div>}
       {response && (
-        <div className="w-full max-w-3xl mt-8 bg-white border rounded shadow p-6 text-base whitespace-pre-line">
-          <h2 className="text-xl font-semibold mb-3">AI Recommendations</h2>
-          {response}
+        <div className="w-full max-w-3xl mt-8 bg-gradient-to-br from-white via-neutral-50 to-neutral-100 border-l-4 border-black rounded-xl shadow-lg p-8 text-base whitespace-pre-line transition-all duration-300 animate-fade-in">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-5 h-5 text-black" />
+            <h2 className="text-xl font-semibold">AI Recommendations</h2>
+          </div>
+          <hr className="my-2 border-black/10" />
+          <div className="font-mono text-black">{response}</div>
         </div>
       )}
     </div>

@@ -6,6 +6,7 @@ import Navbar from "@/components/ui/Navbar";
 import { Toaster } from 'sonner';
 import { currentUser } from "@clerk/nextjs/server";
 import Sidebar from "@/components/ui/Sidebar";
+import { LoadingOverlayProvider, LoadingOverlay } from "@/components/ui/LoadingOverlay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,18 +23,21 @@ export default async function RootLayout({
   const user = await currentUser();
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
-          <Toaster position="top-center" richColors />
-          <div className="flex">
-            <Sidebar authUser={user ? JSON.parse(JSON.stringify(user)) : null} />
-            <main className="flex-1 ml-72 transition-all duration-300">
-              {children}
-            </main>
-          </div>
-        </body>
-      </html>
+      <LoadingOverlayProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            <Navbar />
+            <Toaster position="top-center" richColors />
+            <div className="flex">
+              <Sidebar authUser={user ? JSON.parse(JSON.stringify(user)) : null} />
+              <main className="flex-1 ml-72 transition-all duration-300 relative">
+                <LoadingOverlay isLoading={false} />
+                {children}
+              </main>
+            </div>
+          </body>
+        </html>
+      </LoadingOverlayProvider>
     </ClerkProvider>
   );
 }

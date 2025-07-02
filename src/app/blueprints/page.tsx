@@ -33,10 +33,10 @@ export default async function MyBlueprintsPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-12 mt-20">
-      <h1 className="text-6xl font-extrabold text-center mb-4">My Blueprints</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">My Blueprints</h1>
       <div className="flex justify-center mb-10">
         <Link href="/blueprints/create">
-          <Button variant="default" className="flex items-center gap-2">
+          <Button variant="default" className="flex items-center gap-2 text-xl px-8 py-5">
             <img src="/window.svg" alt="Blueprint Logo" className="w-6 h-6" />
             Create New Blueprint
           </Button>
@@ -49,7 +49,7 @@ export default async function MyBlueprintsPage() {
           {blueprints.map((bp: Blueprint) => (
             <div
               key={bp.id}
-              className="relative bg-card rounded-xl p-8 h-[408px] w-[90%] mx-auto border border-border/40 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+              className="relative bg-card rounded-xl p-6 h-[300px] w-[90%] mx-auto border border-white/70 shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
               {/* Header Row */}
               <div className="flex items-center gap-4 mb-4">

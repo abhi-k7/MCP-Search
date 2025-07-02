@@ -1,16 +1,19 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useLoadingOverlay } from "@/components/ui/LoadingOverlay";
 
 export default function BuildMCPPage() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { show, hide } = useLoadingOverlay();
 
   async function handleSend() {
     if (!input.trim()) return;
-    setLoading(true);
+    setIsSubmitting(true);
+    show();
     setError("");
     setResponse("");
     try {
@@ -25,13 +28,14 @@ export default function BuildMCPPage() {
     } catch (e: any) {
       setError(e.message || "Something went wrong");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
+      hide();
     }
   }
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10">
-      <h1 className="text-3xl font-bold mb-6 text-center">Build an outline for your MCP Server</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">Build an outline for your MCP Server</h1>
       <form
         className="w-full flex flex-col gap-4"
         onSubmit={e => {
@@ -44,15 +48,15 @@ export default function BuildMCPPage() {
           placeholder="Describe the MCP server that you want to build"
           value={input}
           onChange={e => setInput(e.target.value)}
-          disabled={loading}
           required
         />
         <Button
           type="submit"
-          className="bg-black text-white px-6 py-3 rounded text-lg font-semibold disabled:opacity-50 cursor-pointer"
-          disabled={loading || !input.trim()}
+          className={`w-full px-6 py-3 rounded text-lg font-semibold disabled:opacity-50 cursor-pointer transition-colors ${isSubmitting ? 'cursor-wait' : ''}`}
+          variant={isSubmitting ? 'ghost' : 'default'}
+          disabled={!input.trim() || isSubmitting}
         >
-          {loading ? "Searching..." : "Build an outline"}
+          {isSubmitting ? "Building..." : "Build an outline"}
         </Button>
       </form>
       {error && <div className="text-red-600 mt-4">{error}</div>}

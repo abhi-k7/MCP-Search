@@ -15,6 +15,8 @@ export default function Sidebar({ authUser }: { authUser: any }) {
     const isAllServersActive = pathname === '/search' && !isLikedFilter;
     const isLikedServersActive = pathname === '/search' && isLikedFilter;
     const isAiSearchActive = pathname === '/aisearch';
+    const isBlueprintsActive = pathname === '/blueprints' || pathname === '/blueprints/create';
+    const isBuildMCPActive = pathname === '/buildmcp';
 
     if (!authUser) return <UnAuthenticatedSidebar />;
     
@@ -22,7 +24,7 @@ export default function Sidebar({ authUser }: { authUser: any }) {
         <div className="fixed top-16 left-0 w-72 h-[calc(100vh-4rem)] p-4 border-r border-border/40 transition-all duration-300">
             <Card className="h-full shadow-md">
                 <CardHeader className="pb-4">
-                    <CardTitle className="text-xl font-medium">Quick Actions</CardTitle>
+                    <CardTitle className="text-xl font-medium text-center">Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex flex-col gap-3">
@@ -50,14 +52,14 @@ export default function Sidebar({ authUser }: { authUser: any }) {
                         <Button
                           onClick={() => router.push('/blueprints')}
                           className={`w-full py-2.5 cursor-pointer`}
-                          variant={pathname === '/blueprints' ? 'default' : 'ghost'}
+                          variant={isBlueprintsActive ? 'default' : 'ghost'}
                         >
                           Build a Blueprint
                         </Button>
                         <Button
                           onClick={() => router.push('/buildmcp')}
                           className={`w-full py-2.5 cursor-pointer`}
-                          variant={pathname === '/blueprints/create' ? 'default' : 'ghost'}
+                          variant={isBuildMCPActive ? 'default' : 'ghost'}
                         >
                           Build an MCP server
                         </Button>
