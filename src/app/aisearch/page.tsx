@@ -35,7 +35,7 @@ export default function AiSearchPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10">
+    <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10 pt-20 pb-16">
       <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">AI MCP Server Search</h1>
       <form
         className="w-full flex flex-col gap-4"
@@ -62,13 +62,13 @@ export default function AiSearchPage() {
       </form>
       {error && <div className="text-red-600 mt-4">{error}</div>}
       {response && (
-        <div className="w-full max-w-3xl mt-8 bg-gradient-to-br from-white via-neutral-50 to-neutral-100 border-l-4 border-black rounded-xl shadow-lg p-8 text-base whitespace-pre-line transition-all duration-300 animate-fade-in">
+        <div className="w-full max-w-3xl mt-8 bg-background border border-primary rounded-xl shadow-lg p-8 text-base whitespace-pre-line transition-all duration-300 animate-fade-in">
           <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-5 h-5 text-black" />
-            <h2 className="text-xl font-semibold">AI Recommendations</h2>
+            <Sparkles className="w-5 h-5 gradient-text" />
+            <h2 className="text-xl font-semibold gradient-text">AI Recommendations</h2>
           </div>
-          <hr className="my-2 border-black/10" />
-          <div className="font-mono text-black">{response}</div>
+          <hr className="my-2 border-white/20" />
+          <div className="font-mono text-white">{response}</div>
         </div>
       )}
     </div>

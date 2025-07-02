@@ -37,8 +37,9 @@ export function LoadingOverlay({ isLoading }: { isLoading: boolean }) {
         {[...Array(8)].map((_, i) => (
           <span
             key={i}
-            className="absolute w-5 h-5 bg-black rounded-full"
+            className="absolute w-5 h-5 rounded-full"
             style={{
+              background: 'var(--primary)',
               left: `${44 + 40 * Math.cos((i / 8) * 2 * Math.PI)}%`,
               top: `${44 + 40 * Math.sin((i / 8) * 2 * Math.PI)}%`,
               animation: `orbit 1.2s linear infinite`,
