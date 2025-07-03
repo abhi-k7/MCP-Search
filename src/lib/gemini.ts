@@ -102,3 +102,24 @@ If there are no similar servers, say "No close matches found."`;
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
   return text;
 } 
+
+export async function getGeminiMCPServerTemplate(description: string, tools: string[]) {
+  if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY not set');
+
+  const toolList = tools.map(t => `- ${t}`).join('\n');
+  const prompt = `You are an expert MCP server code generator. A user will provide a description of the MCP server they want to build, and a list of tools to expose.\n\nGenerate a TypeScript template for an MCP server that exposes the following tools:\n${toolList}\n\nThe template should:\n- Include all necessary initialization and structure.\n- For each tool, create a stub function and provide a step-by-step breakdown (as comments) on how to implement it.\n- Do not implement the tool logic, just leave TODOs and guidance.\n- Use clear comments and best practices.\n\nHere is the user's description:\n"${description}"\n\nRespond with only the code template, no extra explanation.`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+  };
+
+  const res = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error('Failed to fetch from Gemini API');
+  const data = await res.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  return text;
+} 

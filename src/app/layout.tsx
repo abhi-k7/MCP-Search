@@ -7,6 +7,7 @@ import { Toaster } from 'sonner';
 import { currentUser } from "@clerk/nextjs/server";
 import Sidebar from "@/components/ui/Sidebar";
 import { LoadingOverlayProvider, LoadingOverlay } from "@/components/ui/LoadingOverlay";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default async function RootLayout({
               <main className="flex-1 ml-72 transition-all duration-300 relative">
                 <LoadingOverlay isLoading={false} />
                 {children}
+                <Analytics />
               </main>
             </div>
           </body>

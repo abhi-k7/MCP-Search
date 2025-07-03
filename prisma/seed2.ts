@@ -14,6 +14,7 @@ async function main() {
       documentation: 'https://mcp.asana.com/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://logosandtypes.com/wp-content/uploads/2020/11/Asana.png'
     },
     {
       name: 'Intercom',
@@ -22,6 +23,7 @@ async function main() {
       documentation: 'https://mcp.intercom.com/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://www.capterra.com/assets-bx-capterra/_next/image?url=https%3A%2F%2Fgdm-catalog-fmapi-prod.imgix.net%2FProductLogo%2F6a454b39-277e-4602-aaed-5412bfd47102.png&w=256&q=75'
     },
     {
       name: 'invideo',
@@ -30,6 +32,7 @@ async function main() {
       documentation: 'https://mcp.invideo.io/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://x5h8w2v3.delivery.rocketcdn.me/wp-content/uploads/2025/03/Logo-Invideo-AI.png'
     },
     {
       name: 'Linear',
@@ -38,6 +41,7 @@ async function main() {
       documentation: 'https://mcp.linear.app/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxh-ehr-zuOE7bQqm2Whuom2ZZtAa-yhFzhg&s'
     },
     {
       name: 'PayPal',
@@ -46,6 +50,7 @@ async function main() {
       documentation: 'https://mcp.paypal.com/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_640.png'
     },
     {
       name: 'Plaid',
@@ -54,6 +59,7 @@ async function main() {
       documentation: 'https://api.dashboard.plaid.com/mcp/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToCs8hfUPLeOhJBSkFmbF6Z0lSShtoY68axA&s'
     },
     {
       name: 'Square',
@@ -62,6 +68,7 @@ async function main() {
       documentation: 'https://mcp.squareup.com/sse',
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Square%2C_Inc_-_Square_Logo.jpg'
     },
     {
       name: 'Workato',
@@ -70,6 +77,7 @@ async function main() {
       documentation: 'https://workato.com/mcp', // placeholder if none provided
       isRemote: true,
       userId: user.id,
+      logoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk1mzh8iw9JLb36etof_BN65n6Xxho3heuXg&s'
     },
   ]
 
