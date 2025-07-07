@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     const servers = await prisma.mcpServer.findMany();
     if (Array.isArray(tools) && tools.length > 0) {
       // Generate a code template for the MCP server
-      const codeTemplate = await getGeminiMCPServerTemplate(description, tools);
+      const codeTemplate = await getGeminiMCPServerTemplate(description);
       return NextResponse.json({ codeTemplate });
     } else {
       // Call Gemini LLM for MCP build outline
