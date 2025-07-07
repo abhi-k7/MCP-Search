@@ -58,7 +58,7 @@ export default async function SearchPage({
           Search MCP Servers
         </h1>
         <p className="text-lg text-muted-foreground mb-8">
-          Find the perfect server for your needs
+          Find the perfect Model Context Protocol (MCP) server for your needs, from a library of official MCP servers.
         </p>
 
         <SearchControls categories={categories} />

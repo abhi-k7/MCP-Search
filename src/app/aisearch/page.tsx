@@ -36,7 +36,11 @@ export default function AiSearchPage() {
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10 pt-20 pb-16">
-      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">AI MCP Server Search</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">MCP-AI Integrate</h1>
+      <p className="text-lg text-muted-foreground mb-8">
+          Enter a description of the application that you are building, and 
+          find a list of MCP servers that could be useful in building it.
+        </p>
       <form
         className="w-full flex flex-col gap-4"
         onSubmit={e => {

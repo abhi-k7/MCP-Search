@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLoadingOverlay } from "@/components/ui/LoadingOverlay";
+import Link from "next/link";
 
 export default function BuildMCPPage() {
   const [input, setInput] = useState("");
@@ -35,7 +36,9 @@ export default function BuildMCPPage() {
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 mt-10 pt-20 pb-16">
-      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">Build an outline for your MCP Server</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">MCP Server Outline Creator</h1>
+      <p className="text-lg text-muted-foreground mb-8">
+        Enter a descirption for an MCP server that you want to build, and ideate with AI.        </p>
       <form
         className="w-full flex flex-col gap-4"
         onSubmit={e => {
@@ -58,6 +61,24 @@ export default function BuildMCPPage() {
         >
           {isSubmitting ? "Building..." : "Build an outline"}
         </Button>
+        <Link href="/createmcp" className="w-full">
+          <Button
+            type="button"
+            className="w-full px-6 py-3 rounded text-lg font-semibold mt-2 border border-primary text-primary bg-background hover:bg-primary/10 transition-colors"
+            variant="outline"
+          >
+            Get an MCP Server's code template
+          </Button>
+        </Link>
+        <Link href="/apitomcp" className="w-full">
+          <Button
+            type="button"
+            className="w-full px-6 py-3 rounded text-lg font-semibold mt-2 border border-primary text-primary bg-background hover:bg-primary/10 transition-colors"
+            variant="outline"
+          >
+            Convert REST API to MCP Server
+          </Button>
+        </Link>
       </form>
       {error && <div className="text-red-600 mt-4">{error}</div>}
       {response && (

@@ -3,8 +3,10 @@ import { LoadingOverlayTestButton } from "@/components/ui/LoadingOverlay";
 export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto py-12">
-      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">About</h1>
-      <p className="mb-8">This is the about page for the MCP Search application.</p>
+      <div className="pt-8">
+        <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">About</h1>
+        <p className="mb-8">This is the about page for the MCP Search application.</p>
+      </div>
 
       {/* FAQ Section */}
       <div className="mt-16">

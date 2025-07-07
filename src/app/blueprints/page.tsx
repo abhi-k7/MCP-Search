@@ -33,7 +33,11 @@ export default async function MyBlueprintsPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-12 mt-20">
-      <h1 className="text-6xl font-extrabold text-center gradient-text mb-4">My Blueprints</h1>
+      <h1 className="text-6xl font-extrabold text-center gradient-text mb-12">My Blueprints</h1>
+      <p className="text-lg text-muted-foreground mb-8">
+        Group together a list of MCP servers that you collectively use for a specific purpose as a Blueprint.
+         Publish it if you think it could be useful to others.
+        </p>
       <div className="flex justify-center mb-10">
         <Link href="/blueprints/create">
           <Button variant="default" className="flex items-center gap-2 text-xl px-8 py-5">
